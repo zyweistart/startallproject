@@ -1,0 +1,37 @@
+1.编码规范
+	1.1:获取数据
+		1.1.1:getData
+		1.1.2:getGetData
+		1.1.3:getPostData
+		1.1.4:getApplyDataUpload
+		1.1.5:getDataUpload
+		1.1.6:getSubDataUpload
+		1.1.7:getTextDataUpload
+	1.2:对数据进行签名
+		1.2.1:签名模式
+			1.2.2:MD5签名
+			1.2.3:HmacSHA1签名(需要签名键，一般用户登陆后会返回一个AccessKey密钥键)
+			要求：只对请求头数据中以"x--"开头的请求头名称进行签名，签名时数据按照自然顺序法进行排序
+	1.3:验证数据的正确性
+	1.4:具体的业务逻辑
+	1.5:设置返回值
+2.
+3.事务处理模式
+	//获取事务对象
+	Transaction transaction=服务层(Service).getTransient();
+	try {
+		//开启事务
+		transaction.beginTrans();
+		
+		//事务需要处理的代码,如添加，更新，删除等
+		//save、update、delete
+		
+		//提交事务
+		transaction.commitTrans();
+	} catch (Exception e) {
+		//出现异常回滚事务
+		//在Action一般设置为返回对象
+		//例：result(CommonBusinesUtils.exception(transaction, e,StackTraceInfo.getTraceInfo()));
+		//在Service层中一般设置为throw new AppRuntimeException
+		//例：throw new AppRuntimeException(CommonBusinesUtils.exception(transaction, e,StackTraceInfo.getTraceInfo()));
+	}
