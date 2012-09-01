@@ -1,0 +1,9 @@
+package @{COMPANYNAME}.@{PACKAGENAME}.action;
+
+import org.zyweistartframework.context.annotation.Controller;
+import org.framework.action.RootAction;
+
+@Controller("@{SIMPLEENTITYNAME}")
+public final class @{ENTITYNAME}Action extends RootAction {
+	
+}

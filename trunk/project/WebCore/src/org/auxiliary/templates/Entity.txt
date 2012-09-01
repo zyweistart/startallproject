@@ -1,0 +1,15 @@
+package @{COMPANYNAME}.@{PACKAGENAME}.entity;
+
+import org.zyweistartframework.context.annotation.Entity;
+import org.framework.entity.Root;
+import org.zyweistartframework.persistence.annotation.Table;
+
+@Entity("@{SIMPLEENTITYNAME}")
+@Table("@{TABEXTESION}_@{UENTITYNAME}")
+public class @{ENTITYNAME} extends Root {
+
+	private static final long serialVersionUID = 1L;
+	
+	public @{ENTITYNAME}(){}
+
+}

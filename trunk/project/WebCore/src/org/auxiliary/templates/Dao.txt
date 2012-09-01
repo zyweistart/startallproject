@@ -1,0 +1,8 @@
+package @{COMPANYNAME}.@{PACKAGENAME}.dao;
+
+import org.framework.dao.RootDao;
+import @{COMPANYNAME}.@{PACKAGENAME}.entity.@{ENTITYNAME};
+
+public interface @{ENTITYNAME}Dao extends RootDao<@{ENTITYNAME},String> {
+
+}
