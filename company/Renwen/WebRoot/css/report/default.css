@@ -1,0 +1,226 @@
+@CHARSET "UTF-8";
+
+body {
+    FONT-SIZE: 12px;
+    FONT-FAMILY:  "宋体", "Verdana", "Arial", "Helvetica", "sans-serif";
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    scrollbar-face-color: #F5F5F5;
+    scrollbar-highlight-color: #3A556E;
+    scrollbar-shadow-color: #3A556E;
+    scrollbar-3dlight-color: white;
+    scrollbar-arrow-color: #3A556E;
+    scrollbar-track-color: white;
+    scrollbar-darkshadow-color: white;
+}
+
+td {
+    FONT-FAMILY:  "宋体", "Verdana", "Arial", "Helvetica", "sans-serif";
+    color: #000000;
+    font-size: 12px;
+    height: 16px;
+    background-color: #FFFFFF;
+}
+
+a {
+    FONT-SIZE: 12px;
+    FONT-FAMILY:  "宋体", "Verdana", "Arial", "Helvetica", "sans-serif";
+}
+
+img {
+    border: 0;
+    cursor: hand;
+}
+
+/*top*/
+#top {
+    width: 100%;
+    height: 63px;
+}
+
+#logo {
+    background-image: url(../images/logo.jpg);
+    background-repeat: no-repeat;
+    background-position: left center;
+    height: 63px;
+    width: 100%;
+    text-align: right;
+    vertical-align: middle;
+}
+
+#time {
+    float: right;
+    text-align: right;
+    text-indent: 10px;
+    height: 63px;
+    width: 300px;
+    vertical-align: middle;
+    font-family: "宋体";
+    font-size: 12px;
+    padding-top: 40px;
+    padding-right: 10px;
+}
+
+#menu {
+    width: 100%;
+    background-color: #CCCCCC;
+    text-align: right;
+    padding-top: 3px;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+}
+
+#user {
+    font-family: "宋体";
+    font-size: 12px;
+    padding: 3px;
+    float: left;
+    width: auto;
+    text-align: left;
+    text-indent: 20px;
+}
+#link {
+    font-family: "宋体";
+    font-size: 12px;
+    padding: 3px;
+    float: left;
+    width: 60%;
+    text-align: left;
+}
+
+/*login*/
+#login {
+    width: 50%;
+}
+
+#buttom {
+    background: url(../images/buttom.png);
+    width: 129px;
+    height: 49px;
+    cursor: hand;
+}
+
+input{
+    FONT-FAMILY:  "宋体", "Verdana", "Arial", "Helvetica", "sans-serif";
+    color: #000000;
+    font-size: 12px;
+    height: 16px;
+    background-color: #FFFFFF;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: 1px solid #000000;
+    border-left-style: none;
+}
+
+.button {
+    height: 22px;
+    font-size: 12px;
+    border: 1px solid #DDDDDD;
+    background: #FFFFFF;
+}
+
+select {
+    FONT-FAMILY:  "宋体", "Verdana", "Arial", "Helvetica", "sans-serif";
+    width: auto;
+    height: 30px;
+    font-size: 12px;
+    border: 1px solid #D2EFFF;
+    background-color: #FFFFFF;
+}
+
+option{
+    FONT-FAMILY:  "宋体", "Verdana", "Arial", "Helvetica", "sans-serif";
+    border: 1px solid #CCCCCC;
+    background-color: #FFFFFF;
+    FONT-SIZE: 10pt;
+}
+
+textarea{
+    width: 98%;
+    height: 90px;
+    border: 1px solid #CCCCCC;
+    background-color: #FFFFFF;
+}
+
+a:link {
+    font-size: 12px;
+    color: #000000;
+    text-decoration: none;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+a:visited {
+    font-size: 12px;
+    color: #06482a;
+    text-decoration: none;
+}
+
+a:hover {
+    font-size: 12px;
+    color: #FF0000;
+    text-decoration: underline;
+}
+
+a:active {
+    font-size: 12px;
+    color: #FF0000;
+    text-decoration: none;
+}
+
+
+.btn3_mouseout {
+    PADDING-RIGHT: 2px;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 12px;
+    FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType = 0, StartColorStr = #ffffff, EndColorStr = #C3DAF5);
+    CURSOR: hand;
+    COLOR: black;
+    PADDING-TOP: 2px;
+    border: 0px solid #4E7BD1;
+}
+
+.btn3_mouseover {
+    PADDING-RIGHT: 2px;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 12px;
+    FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType = 0, StartColorStr = #ffffff, EndColorStr = #D7E7FA);
+    CURSOR: hand;
+    COLOR: black;
+    PADDING-TOP: 2px;
+    border: 1px solid #4E7BD1;
+}
+
+.btn3_mousedown {
+    BORDER-RIGHT: #FFE400 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #FFE400 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 12px;
+    FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType = 0, StartColorStr = #ffffff, EndColorStr = #C3DAF5);
+    BORDER-LEFT: #FFE400 1px solid;
+    CURSOR: hand;
+    COLOR: black;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #4E7BD1 1px solid;
+}
+
+.btn3_mouseup {
+    BORDER-RIGHT: #2C59AA 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #2C59AA 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 12px;
+    FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType = 0, StartColorStr = #ffffff, EndColorStr = #C3DAF5);
+    BORDER-LEFT: #2C59AA 1px solid;
+    CURSOR: hand;
+    COLOR: black;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #4E7BD1 1px solid;
+}

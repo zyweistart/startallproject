@@ -1,0 +1,188 @@
+/* CSS Document */
+ @CHARSET "UTF-8";
+
+* {
+	padding: 0px;
+	margin: 0px;
+}
+
+ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+/*nav*/
+#nav {
+	width: 100%;
+}
+
+#nav li a:hover {
+	color: #ffff00;
+}
+
+#nav li {
+	font-size: 14px;
+	float: left;
+	padding-right:15px;
+	padding-left: 28px;
+	position: relative;
+}
+
+#nav a {
+	height: 30px;
+	line-height: 30px;
+	color: #fff;
+	
+}
+
+#nav dl {
+	width: 200px;
+	background: #777;
+	display: none;
+	position: absolute;
+	left: 20px;
+	top: 30px;
+}
+
+#nav dl dd {
+	text-align: left;
+}
+
+#links,#notice,#news {
+	float: left;
+	margin-top: 20px;
+	padding: 0 10px 0 10px;
+}
+
+#links dl {
+	width: 180px;
+}
+
+#links dl dt {
+	height: 42px;
+	background: url("../images/link_head.png");
+}
+
+#administration {
+	height: 42px;
+	background: url("../images/link_01.png") no-repeat;
+}
+
+#teaching {
+	height: 42px;
+	background: url("../images/link_02.png") no-repeat;
+}
+
+#training {
+	height: 42px;
+	background: url("../images/link_03.png") no-repeat;
+}
+
+#political {
+	height: 42px;
+	background: url("../images/link_04.png") no-repeat;
+}
+
+#scientific {
+	height: 42px;
+	background: url("../images/link_05.png") no-repeat;
+}
+
+#cultivate {
+	height: 42px;
+	background: url("../images/link_06.png") no-repeat;
+}
+
+#notice dl {
+	width: 320px;
+	text-align: left;
+}
+
+#notice dl dt {
+	height: 42px;
+	background: url("../images/notice_head.png") no-repeat;
+	padding-bottom: 20px;
+}
+
+#notice dl dt a {
+	display: block;
+	float: right;
+	width: 40px;
+	height: 30px;
+	margin-right: 20px;
+}
+
+#notice dl dd {
+	padding: 6px 0;
+}
+
+#notice dl dd a{
+	font-size: 13px;
+	color: #555;
+}
+
+#notice dl dd a:hover {
+	color: #333;
+}
+
+#notice dl dd em {
+	font-style: normal;
+}
+
+#news {
+	width: 440px;
+}
+
+#news_title {
+	width: 440px;
+	height: 42px;
+	background: url("../images/news_head.png") no-repeat;
+}
+#news_banner,#news_infor{
+	float: left;
+}
+  #news_infor dl{
+  padding-top: 13px;
+  text-align: left;
+  }
+ #news_infor dl dd{
+ 
+ padding: 6px 0;
+ }
+ #news_infor dl dd a{
+    font-size: 13px;
+    color: #555;
+ }
+  #news_infor dl dd a:hover{
+    font-size: 13px;
+    color: #333;
+ }
+#contain {
+	background: url("../images/front/nav_arrow.png") repeat-x;
+}
+  #otherlink {
+  padding-bottom: 10px;
+  }
+ #otherlink a{
+ font-size: 13px;
+ color: #666;
+ }
+  #otherlink a:hover{
+ font-size: 13px;
+ color: #333;
+ }
+#bottom a{
+font-size: 13px;
+color: #fff;
+}
+ #bottom a:hover{
+font-size: 13px;
+color: yellow;
+}
+#bottom td{
+font-size: 13px;
+color: #fff;
+}

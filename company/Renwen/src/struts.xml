@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.i18n.reload" value="true" /><!-- 当国際化文件改变时,自动读取 -->
+    <constant name="struts.ui.theme" value="simple" /><!-- 将所有主题默认为简单的 -->
+    <constant name="struts.i18n.encoding" value="UTF-8" /><!-- 全局默认编码为UTF-8 -->
+    <constant name="struts.action.extension" value="htm" /><!-- 将所有Action的后缀改为HTM -->
+    <constant name="struts.devMode" value="false" /><!-- 开发模试 -->
+    <constant name="struts.configuration.xml.reload" value="true" /><!-- 当配置文件改变时,自动读取配置文件 -->
+    <constant name="struts.custom.i18n.resources" value="ApplicationResources" />
+    <constant name="struts.objectFactory" value="spring" /><!-- 引入Spring -->
+    <constant name="struts.multipart.saveDir" value="/temp" />
+    <constant name="struts.multipart.maxSize" value="1048576000" /><!-- 允许最大上传文件的大小 -->
+    <constant name="struts.objectFactory.spring.autoWire" value="name" /><!-- 以名字进行匹配 -->
+    <constant name="struts.objectFactory.spring.useClassCache" value="true" /><!-- 类缓存默认关闭,开发期间这样处理 -->
+    <package name="platform" extends="struts-default">
+        <result-types>
+            <result-type name="chart" class="org.apache.struts2.dispatcher.ChartResult" />
+            <result-type name="jasper" class="org.apache.struts2.views.jasperreports.JasperReportsResult" />
+        </result-types>
+        <interceptors>
+            <interceptor-stack name="default" >
+                <interceptor-ref name="fileUpload">
+                    <param name="allowedTypes">
+                  
+                    </param>
+                    <param name="bufferSize">102400</param>
+                </interceptor-ref>
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        <!-- 将分页的拦截器和安全拦截器声明 -->
+        <default-interceptor-ref name="default" />
+        <global-results>
+            <result name="systemException">
+                /common/exception/all.jsp
+            </result>
+        </global-results>
+        <!-- 全局异常处理 -->
+        <global-exception-mappings>
+            <exception-mapping result="systemExceptions" exception="com.hightern.kernel.exception.SystemExceptions" />
+        </global-exception-mappings>
+
+        <!-- 通过ACTION的配置,将文件上传下载,报表等返回类型引入! -->
+        <action name="*_*" class="{1}Action" method="{2}">
+            <result name="input">${inputPage}</result>
+            <result name="success">${successPage}</result>
+            <!--文件下载-->
+            <result name="download" type="stream">
+                <param name="contentType">${contentType}</param>
+                <param name="contentDisposition">
+                    attachment;filename="${fileName}"
+                </param>
+                <param name="inputName">downloadFile</param>
+                <param name="bufferSize">204800</param>
+            </result>
+            <!--Ireport报表 -->
+            <result name="jasperreport" type="jasper">
+                <param name="location">${location}</param>
+                <param name="dataSource">reportDatas</param>
+                <param name="format">${format}</param>
+            </result>
+            <!--图形报表-->
+            <result name="jfreechart" type="chart">
+                <param name="chart">chart</param>
+                <param name="height">${height}</param>
+                <param name="width">${width}</param>
+                <param name="imageType">${imageType}</param>
+            </result>
+            <!-- 随机生成验证码 -->
+            <result name="stream" type="stream">
+                <param name="contentType">image/jpeg</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+    </package>
+</struts>

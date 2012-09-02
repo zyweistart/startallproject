@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+         http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+
+	<!-- 国际化 -->
+	<context-param>
+		<param-name>extremecomponentsMessagesLocation</param-name>
+		<param-value>/ApplicationResources</param-value>
+	</context-param>
+
+	<!-- 监听器 -->
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<servlet-class>
+			com.hightern.fckeditor.connector.ConnectorServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<servlet-name>InitialWebApplicationContext</servlet-name>
+		<servlet-class>
+			com.hightern.kernel.servlet.InitialWebApplicationContextServlet
+		</servlet-class>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+
+	<!-- JPA过滤器 -->
+	<filter>
+		<filter-name>jpaFilter</filter-name>
+		<filter-class>
+			org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter
+		</filter-class>
+		<init-param>
+			<param-name>entityManagerFactory</param-name>
+			<param-value>entityManagerFactory</param-value>
+		</init-param>
+	</filter>
+
+	<!-- 语言编码过滤器 -->
+	<filter>
+		<filter-name>encoding</filter-name>
+		<filter-class>
+			org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+
+	<!-- struts2过滤器 -->
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>
+			org.apache.struts2.dispatcher.FilterDispatcher
+		</filter-class>
+	</filter>
+
+	<filter>
+		<filter-name>cleanUp</filter-name>
+		<filter-class>
+			org.apache.struts2.dispatcher.ActionContextCleanUp
+		</filter-class>
+	</filter>
+
+	<!--extremecomponents -->
+	<filter>
+		<filter-name>eXtremeExport</filter-name>
+		<filter-class>
+			com.hightern.ecside.table.filter.ExportFilter
+		</filter-class>
+		<init-param>
+			<param-name>responseHeadersSetBeforeDoFilter</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>encoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>jpaFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>eXtremeExport</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>*.htm</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>cleanUp</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<url-pattern>
+			/common/fckeditor/editor/filemanager/connectors/*
+		</url-pattern>
+	</servlet-mapping>
+ <servlet>
+    <description></description>
+    <display-name>fileEditor</display-name>
+    <servlet-name>fileEditor</servlet-name>
+    <servlet-class>com.hightern.editor.servlet.fileEditor</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>fileEditor</servlet-name>
+    <url-pattern>/fileEditor</url-pattern>
+  </servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>in.html</welcome-file>
+	</welcome-file-list>
+</web-app>
