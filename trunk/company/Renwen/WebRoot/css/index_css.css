@@ -1,0 +1,34 @@
+/* CSS Document */
+
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-image: url(../images/0140.gif);
+}
+#bg{
+	background-image: url(../images/index.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 504px;
+	width: 100%;
+	margin-top: 40px;
+}
+.flash{
+	width: 100%;
+	height:390px;
+	text-align: center;
+	padding-top: 30px;
+}
+.enter{
+	text-align: center;
+	height: 70px;
+	width: 100%;
+}
+.buttom{
+	height: 30px;
+	width: 120px;
+	padding-top: 6px;
+	padding-bottom: 15px;
+}

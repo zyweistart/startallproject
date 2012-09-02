@@ -1,0 +1,151 @@
+/**
+ * Copyright (c) 2009. All rights reserved.
+ * 所属公司：Hightern 宁波海腾计算机有限公司
+ */
+package com.hightern.#{packageName}.action;
+import java.util.List;
+import javax.annotation.Resource;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+import com.hightern.kernel.action.BaseAction;
+import com.hightern.kernel.exception.SystemExceptions;
+import com.hightern.#{packageName}.model.#{upperName};
+import com.hightern.#{packageName}.service.#{upperName}Service;
+
+@Scope("prototype")
+@Controller("#{lowerName}Action")
+public class #{upperName}Action extends BaseAction<#{upperName}> {
+
+    /**
+     * 此#{upperName}Action由系统自动生成，但仅实现了基本的CRUD 功能
+     * 请根据业务的需求补全其它功能及编码
+     */
+    
+    private static final long serialVersionUID = 1L;    
+    private static final String ACTION_MANAGER_#{upperCase} = "#{lowerName}_manager.htm";
+    private static final String ACTION_SHOWADD_#{upperCase} = "#{lowerName}_showAdd.htm";
+    private static final String FORWARD_MANAGER_#{upperCase} = "/#{packageName}/manager_#{lowerName}.jsp";
+    private static final String FORWARD_LIST_#{upperCase} = "/#{packageName}/list_#{lowerName}.jsp";
+    private static final String FORWARD_SHOWADD_#{upperCase} = "/#{packageName}/add_#{lowerName}.jsp";
+    private static final String FORWARD_SHOWEDIT_#{upperCase} = "/#{packageName}/edit_#{lowerName}.jsp";
+    private static final String FORWARD_DETAIL_#{upperCase} = "/#{packageName}/detail_#{lowerName}.jsp";
+    @Resource(name = "#{lowerName}Service")
+    private #{upperName}Service #{lowerName}Service;
+    private List<#{upperName}> #{lowerName}s;
+    private #{upperName} #{lowerName};
+    
+    /**保存数据（添加或修改对象）
+     * @return SUCCESS
+     * @throws SystemExceptions
+     */
+    public String save() throws SystemExceptions {
+        if (null != #{lowerName}) {
+            if (#{lowerName}.getId() > 0) {
+                this.setParameters("数据编辑成功！", ACTION_MANAGER_#{upperCase});
+            } else {
+                this.setParameters("数据保存成功！", ACTION_SHOWADD_#{upperCase});
+            }
+            #{lowerName}Service.save(#{lowerName});
+        }
+        return SUCCESS;
+    }
+
+    /**删除操作
+     * @return SUCESS
+     * @throws SystemExceptions
+     */
+    public String delete() throws SystemExceptions {
+        if (isNullOrEmptyString(getSelectedIds())) {
+            throw new SystemExceptions("编号不能为空！");
+        }
+        #{lowerName}Service.remove(idsStringToList(getSelectedIds()));
+        setParameters("删除成功！",ACTION_MANAGER_#{upperCase});
+        return SUCCESS;
+    }
+    
+    /**
+     * 管理所有
+     * @return SUCCESS
+     * @throws SystemExceptions
+     */
+    @SuppressWarnings("unchecked")
+    public String manager() throws SystemExceptions {
+        if(#{lowerName} == null){
+            #{lowerName} = new #{upperName}(request, null);
+        }
+        #{lowerName}s = #{lowerName}Service.paginated(#{lowerName});
+        this.setParameters(FORWARD_MANAGER_#{upperCase});
+        return SUCCESS;
+    }
+    
+    /**
+     * 查看所有信息
+     * 
+     * @return SUCCESS
+     * @throws SystemExceptions
+     */
+    @SuppressWarnings("unchecked")
+    public String list() throws SystemExceptions {
+        if(#{lowerName} == null){
+            #{lowerName} = new #{upperName}(request, null);
+        }
+        #{lowerName}s = #{lowerName}Service.paginated(#{lowerName});
+        this.setParameters(FORWARD_LIST_#{upperCase});
+        return SUCCESS;
+    }
+    
+    /**添加导航
+     * @return SUCCESS
+     * @throws SystemExceptions
+     */
+    public String showAdd() throws SystemExceptions {
+        this.setParameters(FORWARD_SHOWADD_#{upperCase});
+        return SUCCESS;
+    }
+
+    /**编辑导航
+     * @return SUCCESS
+     * @throws SystemExceptions
+     */
+    public String showEdit() throws SystemExceptions {
+        if (isNullOrEmptyString(getSelectedIds())) {
+            throw new SystemExceptions("编号不能为空！");
+        }
+        #{lowerName} = #{lowerName}Service.findById(idsStringToList(getSelectedIds()).get(0));
+        this.setParameters(FORWARD_SHOWEDIT_#{upperCase});
+        return SUCCESS;
+    }
+
+    /**
+     *显示详细信息
+     * @return SUCCESS
+     * @throws SystemExceptions
+     */
+    public String detail() throws SystemExceptions {
+        if (isNullOrEmptyString(getId())) {
+            throw new SystemExceptions("编号不能为空！");
+        }
+        #{lowerName} = #{lowerName}Service.findById(getId());
+        this.setParameters(FORWARD_DETAIL_#{upperCase});
+        return SUCCESS;
+    }
+
+    public List<#{upperName}> get#{upperName}s() {
+        return #{lowerName}s;
+    }
+
+    public void set#{upperName}s(List<#{upperName}> #{lowerName}s) {
+        this.#{lowerName}s = #{lowerName}s;
+    }
+
+    public #{upperName} get#{upperName}() {
+    	if(#{lowerName} == null){
+    		#{lowerName} = new #{upperName}();
+    	}
+        return #{lowerName};
+    }
+
+    public void set#{upperName}(#{upperName} #{lowerName}) {
+        this.#{lowerName} = #{lowerName};
+    }
+}

@@ -1,0 +1,92 @@
+/* CSS Document */
+ @CHARSET "UTF-8";
+
+#leftside_nav,#right_info {
+	float: left;
+	margin-top: 10px;
+}
+
+#leftside_nav {
+	background: url("../images/front/left_side_arrond.png") no-repeat top
+		right;
+	width: 250px;
+}
+
+#leftside_nav dl {
+	text-align: right;
+	padding-top: 30px;
+	height: 550px;
+	width: 180px;
+}
+
+#leftside_nav dt {
+	font-size: 23px;
+	font-weight: bold;
+	border-bottom: 1px solid #999;
+	padding-bottom: 5px;
+}
+
+#leftside_nav dd {
+	background: url("../images/front/jiantou.png") no-repeat 138px 8px;
+	font-size : 13px;
+	border-bottom: 1px solid #bbb;
+	font-size: 13px; border-bottom : 1px solid #bbb;
+	padding: 13px 40px 5px 0;
+}
+
+#leftside_nav dd a {
+	color: #000;
+}
+
+#leftside_nav dd a:hover {
+	color: #888;
+}
+
+#right_info {
+	width: 704px;
+	padding-left: 50px;
+}
+
+#infor_top {
+	float:left;
+	margin-top: 35px;
+}
+
+#infor_top_title,#infor_top_addr {
+	float: left;
+	height: 33px;
+	background: url("../images/front/dottom.png") repeat-x  bottom;
+}
+
+#infor_top_title {
+	width: 190px;
+	
+}
+#infor_top_title h3{
+	float:left;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+#infor_top_addr {
+	width: 464px;
+	
+}
+#infor_top_addr em{
+	padding-right:28px;
+	font-size:13px;
+	float:right;
+	font-style: normal;
+}
+#infor_bottom_img,#infor_bottom_contain{
+ 	float: left;
+}
+#infor_bottom_img{
+	width: 190px;
+}
+#infor_bottom_contain{
+	font-size:13px;
+	width: 424px;
+	text-indent: 10px;
+	text-align: justify;
+}

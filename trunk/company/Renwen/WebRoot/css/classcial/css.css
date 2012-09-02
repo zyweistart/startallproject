@@ -1,0 +1,673 @@
+@CHARSET "UTF-8";
+/**************************************
+ *global style *
+ *************************************/
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background:url(../../images/classcial/bg.gif);
+	scrollbar-face-color: #FFF3DB;
+	scrollbar-highlight-color: #8E623B;
+	scrollbar-shadow-color: #8E623B;
+	scrollbar-3dlight-color: white;
+	scrollbar-arrow-color: #8E623B;
+	scrollbar-track-color: white;
+	scrollbar-darkshadow-color: white;
+}
+td{
+	font-size:12px;
+	font-family: verdana, arial, helvetica, sans-serif;
+}
+
+select{
+	font-size:12px;
+	color:#000000;
+	background:transparent;
+	border:1px solid #8E623B;
+}
+textarea{
+	font-size:12px;
+	color:#000000;
+	background:transparent;
+	border:1px solid #8E623B;
+	overflow:yes;
+}
+/**************************************
+ * menu.jsp style *
+ *************************************/
+ .menuStart{
+ 	background:url(../../images/classcial/menu-start.gif) no-repeat left;
+ 	width:14px;
+ }
+ .menuEnd{
+ 	background:url(../../images/classcial/menu-end.gif) no-repeat left;
+ 	width:14px;
+ }
+ .menuSpace{
+ 	background:url(../../images/classcial/menu-space.gif);
+ }
+ .menuBg{
+ 	background:url(../../images/classcial/menu-bg.gif) no-repeat left;
+ 	text-align:center;
+/* 	width:78px;*/
+ 	cursor:hand;
+ }
+ .menuOver{
+ 	background:url(../../images/classcial/navOverBG.gif) no-repeat left;
+ 	text-align:center;
+/* 	width:78px;*/
+ 	cursor:hand;
+ }
+/**************************************
+ *three platform's index.jsp *
+ *************************************/
+.talbe_filter{
+	FILTER:progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr=#8E623B, EndColorStr=#DBC6AC);
+	height:25px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #8E623B;
+}
+.talbe{
+	border:1px solid #8E623B;
+}
+a:link,a:visited{
+	font-size:12px;font-family:"新宋体";
+	color:#333333;
+	text-decoration:underline;
+}
+a.portlet:link,a.portlet:visited{    /*窗口标题和内容标题的链接样式*/
+	font-size:13px;font-family:"新宋体";
+	color:#333333;
+	text-decoration:none;
+}
+a.redportlet:link,a.redportlet:visited{    /*当天的窗口标题和内容标题的链接样式*/
+	font-size:13px;font-family:"新宋体";
+	color:#FF3000;
+	text-decoration:none;
+}
+a.more:link,a.more:visited{    /*更多按钮的样式*/
+	font-size:12px;font-family:"新宋体";
+	color:#FF0000;
+	text-decoration:none;
+}
+a:hover{
+	color:#FF6C00;
+	text-decoration:underline;
+}
+.talbe_notop{
+	border-left : 1px solid #8E623B;
+	border-right : 1px solid #8E623B;
+	border-bottom : 1px solid #8E623B;
+}
+.left_tdtable{
+	border-right: 1px solid #8E623B;
+}
+.left_table{
+	background : url(../../images/classcial/bg.gif);
+	border-top : 1px solid #8E623B;
+	border-right : 1px solid #8E623B;
+	border-bottom : 1px solid #8E623B;
+}
+/**************************************
+ *form control style *
+ *************************************/
+.selectText{
+	font-size:12px;
+	color:#000000;
+	background-color:#F5F5F5;
+	border:1px solid #8E623B;
+	overflow:yes;
+	cursor:hand;
+}
+.textInput{
+	font-size:12px;
+	color:#000000;
+	background:transparent;
+	border:1px solid #8E623B;
+}
+.multiSelect{
+	font-size:12px;
+	width:300px;
+	background:transparent;
+	border:0px solid #000000;
+}
+.errorTextInput{
+	font-size:12px;
+	color:#000000;
+	background:transparent;
+	border:1px solid #FF0000;
+}
+.errorTextarea{
+	font-size:12px;
+	color:#000000;
+	background:transparent;
+	border:1px solid #FF0000;
+	overflow:auto;
+}
+.errorSelect{
+	font-size:12px;
+	color:#000000;
+	background:transparent;
+	border:1px solid #FF0000;
+}
+.buttonStyle{
+	PADDING-RIGHT: 2px;
+	PADDING-LEFT: 2px;
+	FONT-SIZE: 12px;
+	FILTER:	progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#E7CF9F, EndColorStr=#DBC6AC);
+	CURSOR: hand;
+	COLOR: black;
+	PADDING-TOP: 2px;
+	border: 1px solid #39586D;
+	height: 24px;
+}
+.buttonStyle4 {
+	PADDING-RIGHT: 2px;
+	PADDING-LEFT: 2px;
+	FONT-SIZE: 12px;
+	FILTER:	progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#E7CF9F, EndColorStr=#DBC6AC);
+	CURSOR: hand;
+	COLOR: black;
+	PADDING-TOP: 2px;
+	border: 1px solid #39586D;
+	height: 24px;
+}
+.onlineLabel{
+	cursor:hand;
+	font-size:12px;
+	color:#FF0000;
+}
+.offlineLabel{
+	cursor:hand;
+	font-size:12px;
+	color:#000000;
+}
+.selectOperator{
+	border-collapse:collapse;
+}
+/**************************************
+ * local css  *
+ *************************************/
+
+.talbe_gray_border{
+	border:1px solid #8E623B;
+	background:#FFF3DB;
+}
+/**************************************
+ * form css style *
+ *************************************/
+ table.tableBgColor{
+ 	background:#8E623B;
+ }
+ td.leftTdBgColor{
+ 	height:25px;
+ 	background:#E7CF9F;
+ }
+ td.rightTdBgColor{
+ 	height:25px;
+ 	padding-left:3px;
+ 	background:#FFF3DB;
+ }
+ td.rightTdNoPad{
+ 	background:#FFF3DB;
+ }
+ td.tdTopBorder{
+ 	border-bottom:1px solid #8E623B;
+ 	padding:2px;
+ 	background:#FFF3DB;
+ }
+ td.tdBottomBorder{
+ 	background:#FFF3DB;
+ }
+ /**************************************
+ * occupy css style *
+ *************************************/
+ .occupySpan{
+ 	background:#0000ff;
+ 	width:11px;
+ 	height:11px;
+ }
+ .conflictSpan{
+ 	background:#ff0000;
+ 	width:11px;
+ 	height:11px;
+ }
+ .idleSpan{
+ 	background:#FFFFFF;
+ 	width:11px;
+ 	height:11px;
+ }
+ .occupyTable{
+ 	background:#737373;
+ }
+ .occupyHeader{
+ 	font-size:10px;
+ 	font-family: verdana, arial, helvetica, sans-serif;
+ 	background:#99CCFF;
+ }
+ .occupyTd{
+ 	font-size:12px;
+ 	height:12px;
+ 	font-family: verdana, arial, helvetica, sans-serif;
+ 	background:#FFFFFF;
+ }
+ /********************************
+ * background color of the container *
+ *******************************/
+TD.mytab {
+    border:1px solid #8E623B; 
+    font-size:12px;
+    background-color:#eaecee;
+    padding-left:5px;
+    padding-right:5px;
+    padding-top:3px;
+    padding-bottom:3px;
+    cursor:pointer;
+    filter:"progid:DXImageTransform.Microsoft.Gradient(startColorStr=#CCA962, endColorStr=#FFF3DB, gradientType=0)";
+}
+TD.mytabselected {
+    font-size:12px;
+    border-left:1px solid #8E623B;
+    border-top:1px solid #8E623B;
+    border-right:1px solid #8E623B;
+    border-bottom:0px solid #8E623B;
+    padding-left:5px;
+    padding-right:5px;
+    padding-top:3px;
+    padding-bottom:3px;
+    cursor:pointer;
+    filter:"progid:DXImageTransform.Microsoft.Gradient(startColorStr=#E8CE9D, endColorStr=#FFFFFF, gradientType=0)";
+}
+TD.mytabblank {
+    font-size:12px;
+    border-left:0px solid #8E623B;
+    border-top:0px solid #8E623B;
+    border-right:0px solid #8E623B;
+    border-bottom:1px solid #8E623B;
+    padding:0;
+}
+
+TD.mytabspliter {
+    font-size:12px;
+    border-left:0px solid #8E623B;
+    border-top:0px solid #8E623B;
+    border-right:0px solid #8E623B;
+    border-bottom:1px solid #8E623B;
+    padding:0;
+}
+
+.mytable{
+	height:400px;
+	border-width:1px;
+	border-style: solid;
+	border-color: #8E623B;
+}
+/**************************************
+ * file-manage css style *
+ *************************************/
+ .fileBody {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color:#FFFFFF;
+ }
+ .fileHeader{
+	font-size:14px;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-weight: bold;
+	color: #000000;
+	text-align:center;
+	background:url(../../images/document/classcial/title-bg.gif);
+ }
+ .fileTableBg{
+ 	border:1px solid #8E623B;
+ 	background:url(../../images/classcial/bg.gif);
+ }
+ .fileTableBg1{
+ 	border:1px solid #8E623B;
+ 	background:url(../../images/classcial/bg.gif);
+ }
+ .fileTableBg3{
+ 	background:#8E623B;
+ }
+ .fileTableHeader{
+ 	background:url(../../images/classcial/titlebg.gif);
+ }
+ .fileTrBg{
+ }
+ .fileTrBg1{
+ 	background:#FFF3DB;
+ }
+ .fileText{
+	border-top:0px solid #8E623B;
+	border-left:0px solid #8E623B;
+	border-right:0px solid #8E623B;
+	border-bottom:1px solid #8E623B;
+	background:transparent;
+	font-size:12px;
+	color:#000000;
+ }
+ .fileText1{
+	border:1px solid #8E623B;
+	background:transparent;
+	font-size:12px;
+	color:#000000;
+ }
+ .fileTextarea{
+	border:1px solid #8E623B;
+	background:transparent;
+	font-size:12px;
+	color:#000000;
+ }
+ .fileTitleFont{
+ 	font-size:14px;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-weight: bold;
+	color: #E7CF9F;
+	padding-left:20px;
+	text-align:left;
+ }
+ .fileReadFont{
+ 	font-size:12px;
+	font-family: verdana, arial, helvetica, sans-serif;
+	color: #000000;
+	padding-left:20px;
+	text-align:left;
+ }
+ .fileTitleFont1{
+ 	font-size:12px;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-weight: bold;
+	color: #000000;
+	padding-left:3px;
+	text-align:left;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+ }
+ .fileTitleFont2{
+ 	font-size:12px;
+	font-family: verdana, arial, helvetica, sans-serif;
+	color: #000000;
+	padding-left:3px;
+	text-align:left;
+ }
+ .fileTdFont{
+ 	font-size:11px;
+	font-family: verdana, arial, helvetica, sans-serif;
+	color: #000000;
+	padding-left:3px;
+	text-align:left;
+	vertical-align:middle;
+ }
+ 
+ .fileSelectedTr{
+ 	background:#FFF3DB;
+ }
+ .fileOverTr{
+ 	background:#F8F3E9;
+ }
+ .fileTotalAnnex{
+ 	font-size:12px;
+	font-family: verdana, arial, helvetica, sans-serif;
+	color: #000000;
+	padding-left:1px;
+	text-align:left;
+ }
+ 
+ 
+ .fileTitle{
+ 	height:25px;
+	font-size:14px;
+	font-family:"宋体";
+	background:#99ccff;
+ }
+ .fileTd{
+ 	height:25px;
+	font-size:12px;
+	font-family:"宋体";
+	background:#f3f3f4;
+ }
+ .fileButton{
+ }
+ .fileSpan{
+ 	padding:2px;
+ 	cursor:hand;
+ 	background:#ffffff;
+ }
+ .fileSelectSpan{
+ 	padding:2px;
+ 	cursor:hand;
+ 	background:#2A5FAA;
+ 	color:#ffffff;
+ 	font-size:12px;
+	font-family:"宋体";
+ }
+ .fileQueryBody{
+ 	background-color:#2A5FAA;
+ }
+ .circulateTitleFont{
+ 	font-size:14px;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-weight: bold;
+	color: #E7CF9F;
+	text-align:left;
+ }
+  /**************************************
+ * project manager *
+ *************************************/
+ .gantt_table{
+	border-left:1px solid #8E623B;
+	border-top:1px solid #8E623B;
+}
+.gantt_header{
+	background-color: #E7CF9F;
+	color: #FFFFFF;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+	height:25px;
+	border-left:1px solid #8E623B;
+	border-top:1px solid #8E623B;
+}
+.gantt_td{
+	height:25px;
+	border-right:1px solid #8E623B;
+	border-bottom:1px solid #8E623B;
+	word-break: break-all;
+}
+.wbs_table{
+	border-left:1px solid #8E623B;
+	border-top:1px solid #8E623B;
+}
+.wbs_header{
+	background-color: #E7CF9F;
+	color: #FFFFFF;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	height:25px;
+	border-right:1px solid #8E623B;
+	border-bottom:1px solid #8E623B;
+}
+.wbs_td{
+	height:25px;
+	border-right:1px solid #8E623B;
+	border-bottom:1px solid #8E623B;
+	word-break: break-all;
+}
+.gantt_tdMouseOver {
+	border: 1px solid silver;
+	cursor:hand;
+}
+.gantt_tdMouseOut {
+	border: 1px solid #FFF3DB;
+}
+.gantt_tdSeparate {
+	width:2px;
+}
+.gantt_operateToolbar {
+	background-color: #FFF3DB;
+}
+
+/**************************************
+ * arrangement manager *
+ *************************************/
+ .arrange_table{
+ 	border-left:1px solid #8E623B;
+	border-top:1px solid #8E623B;
+ }
+ .arrange_header{
+ 	background-color: #E7CF9F;
+	color: #FFFFFF;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	border-right:1px solid #8E623B;
+	border-bottom:1px solid #8E623B;
+ }
+ .arrange_td{
+	border-right:1px solid #8E623B;
+	border-bottom:1px solid #8E623B;
+	word-break: break-all;
+	word-wrap:break-word;
+ }
+ .arrange_td1{
+	height:60px;
+	border-right:1px solid #8E623B;
+	border-bottom:1px solid #8E623B;
+	word-break: break-all;
+	word-wrap:break-word;
+	background-color: #F8F3E9;
+ }
+ /**************************************
+ * choose assessItem *
+ *************************************/
+ .assess_table{
+	border-left:1px solid #8E623B;
+	border-top:1px solid #8E623B;
+ }
+ .assess_header{
+	background-color: #E7CF9F;
+	color: #FFFFFF;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	border-right:1px solid #8E623B;
+	border-bottom:1px solid #8E623B;
+ }
+ .assess_td{
+	border-right:1px solid #8E623B;
+	border-bottom:1px solid #8E623B;
+	word-break: break-all;
+	word-wrap:break-word;
+ }
+ .assess_tdMouseOver {
+	cursor:hand;
+	background-color: #F1F7EE;
+ }
+ 
+ 
+ /**************************************
+ *index self define *
+ *************************************/
+ h2.modtitle {
+	width:100%;
+	padding-top:0px;
+	padding-bottom:0px;
+	margin: 0px;
+	font-size:100%;
+	font-weight:normal;
+}
+.modbox, .modbox_e {
+	margin-bottom:10px;
+}
+.mhdr {
+	width:100%;
+	border-top:1px solid #8E623B;
+	border-left:1px solid #8E623B;
+	border-right:1px solid #8E623B;
+	padding:0px;
+	margin:0px;
+	font-size:82%;
+}
+.mttl {
+	height:24px;
+	background-image: url(../../images/classcial/titlebg.gif);
+	font-weight:bold;
+	padding-left:5px;
+	font-size: 13px;
+}
+.mtt2 {
+	height:24px;
+	background-image: url(../../images/classcial/navBG.gif);
+	font-weight:bold;
+	padding-left:5px;
+	padding-top:3px;
+	font-size: 13px;
+}
+.mtt3{
+	background-image: url(../../images/classcial/N1-2.gif);
+}
+.mtt4{
+	background-image: url(../../images/classcial/N1-1.gif);
+}
+.mtt5{
+	background-image: url(../../images/classcial/N1.gif);
+}
+.medit{
+	height:24px;
+	background-image: url(../../images/classcial/titlebg.gif);
+	padding-right:5px;
+}
+.set {
+	height:25px;
+	background-color: #F1F6F1;
+	border-bottom:1px solid #DCE8DC;
+	color: #284505;
+	font-size: 13px;
+}
+.mc {
+	width:100%;
+	padding-left:10px;
+	padding-top:4px;
+	padding-bottom:4px;
+	font-size:82%;
+}
+.mcl {
+	padding-left:10px;
+	padding-top:4px;
+	padding-bottom:4px;
+	font-size:82%;
+}
+.redmcl {   /*小窗体当天信息的样式*/
+	font-family:新宋体, Verdana, Arial, Helvetica, sans-serif;
+	padding-left:5px;
+	padding-top:4px;
+	padding-bottom:4px;
+	font-size: 12px;
+	color:#FF0000;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+.mcr {
+	padding-left:2px;
+	padding-top:4px;
+	padding-bottom:4px;
+	font-size:12px;
+}
+.content{
+	border-left:1px solid #8E623B;
+	border-right:1px solid #8E623B;
+	border-bottom:1px solid #8E623B;
+}
+.dm {
+	position:relative;
+	width:1px;
+	height:1px;
+}

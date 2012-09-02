@@ -1,0 +1,127 @@
+@CHARSET "UTF-8";
+/**************************************
+ *detail page *
+ *************************************/
+body{
+	background-color: #FFECEF;
+	font-family: Verdana, Arial, Helvetica, sans-serif, "新宋体";
+	font-size:12px;
+	color:#000000;
+}
+.detail_title{
+	font-family: Verdana, Arial, Helvetica, sans-serif, "新宋体";
+	font-size: 24px;
+	font-weight: bolder;
+	color: #000000;
+	font-style: normal;
+	font-variant: normal;
+}
+.detail_baseTitle{
+	font-family: Verdana, Arial, Helvetica, sans-serif, "新宋体";
+	font-size: 14px;
+	font-weight: bolder;
+	color: #000000;
+	font-style: normal;
+	font-variant: normal;
+	padding-top: 10px;
+	PADDING-BOTTOM: 10px;
+}
+.detail{
+	font-family: Geneva, Arial, Helvetica, sans-serif, "新宋体";
+	font-size: 12px;
+	color: #000000;
+	text-decoration: none;
+	line-height: 24px;
+}
+.detail_buttonStyle{
+	PADDING-RIGHT: 2px;
+	PADDING-LEFT: 2px;
+	FONT-SIZE: 12px;
+	FILTER:	progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#ff9bb1, EndColorStr=#ffecef);
+	CURSOR: hand;
+	COLOR: black;
+	PADDING-TOP: 2px;
+	border: 1px solid #39586D;
+	height: 24px;
+}
+.detail_table_boder{
+	border: 1px solid #FF9EB2;
+}
+.detail_input_line{
+	font-family: Verdana, Arial, Helvetica, sans-serif, "新宋体";
+	font-size:12px;
+	border-top:0px solid #FF9EB2;
+	border-left:0px solid #FF9EB2;
+	border-right:0px solid #FF9EB2;
+	border-bottom:1px solid #FF9EB2;
+	background-color: #FFECEF;
+}
+.detailTextarea{
+	font-family: Verdana, Arial, Helvetica, sans-serif, "新宋体";
+	font-size:12px;
+	border:1px solid #FF9EB2;
+	height:70px;
+	PADDING-RIGHT: 3px; 
+	PADDING-LEFT: 3px; 
+	PADDING-BOTTOM: 5px; 
+	PADDING-TOP: 3px ;
+	background-color: #FFECEF;
+ }
+.detail_left_td{
+	font-family: Verdana, Arial, Helvetica, sans-serif, "新宋体";
+	font-size:12px;
+	PADDING-RIGHT: 10px; 
+	PADDING-LEFT: 10px; 
+	PADDING-BOTTOM: 11px; 
+	PADDING-TOP: 11px ;
+}
+.detail_right_td{
+	font-family: Verdana, Arial, Helvetica, sans-serif, "新宋体";
+	font-size:12px;
+	PADDING-RIGHT: 0px; 
+	PADDING-LEFT: 0px; 
+	PADDING-BOTTOM: 10px; 
+	PADDING-TOP: 2px ;
+}
+.detail_header_style{
+	font-family: Verdana, Arial, Helvetica, sans-serif, "新宋体";
+	font-size:12px;
+	PADDING-RIGHT: 5px; 
+	PADDING-LEFT: 5px; 
+	PADDING-BOTTOM: 5px; 
+	PADDING-TOP: 5px ;
+	border: 1px solid #FF9EB2;
+}
+.detail_content_style{
+	font-family: Verdana, Arial, Helvetica, sans-serif, "新宋体";
+	font-size:12px;
+	border-top:0px solid #FF9EB2;
+	border-left:0px solid #FF9EB2;
+	border-right:0px solid #FF9EB2;
+	border-bottom:0px solid #FF9EB2;
+	background-color: #FFECEF;
+
+}
+.detail_content_td_style{
+	font-family: Verdana, Arial, Helvetica, sans-serif, "新宋体";
+	font-size:12px;
+	PADDING-RIGHT: 5px; 
+	PADDING-LEFT: 5px; 
+	PADDING-BOTTOM: 5px; 
+	PADDING-TOP: 5px ;
+	border: 1px solid #FF9EB2;
+}
+.detail_staff_style{
+	font-family: Verdana, Arial, Helvetica, sans-serif, "新宋体";
+	font-size:12px;
+	PADDING-RIGHT: 5px; 
+	PADDING-LEFT: 5px; 
+	PADDING-BOTTOM: 5px; 
+	PADDING-TOP: 5px ;
+	border-top:1px solid #FF9EB2;
+	border-left:1px solid #FF9EB2;
+}
+.detail_table_style{
+	border-bottom:1px solid #FF9EB2;
+	border-right:1px solid #FF9EB2;
+}

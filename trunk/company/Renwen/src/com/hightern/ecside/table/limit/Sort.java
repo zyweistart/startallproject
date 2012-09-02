@@ -1,0 +1,50 @@
+package com.hightern.ecside.table.limit;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+public final class Sort {
+
+    private final String alias;
+    private final String property;
+    private final String sortOrder;
+
+    public Sort() {
+        this.alias = null;
+        this.property = null;
+        this.sortOrder = null;
+    }
+
+    public Sort(String alias, String property, String sortOrder) {
+        this.alias = alias;
+        this.property = property;
+        this.sortOrder = sortOrder;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public String getProperty() {
+        return property;
+    }
+
+    public String getSortOrder() {
+        return sortOrder;
+    }
+
+    public boolean isSorted() {
+        return sortOrder != null;
+    }
+
+    public boolean isAliased() {
+        return !alias.equals(property);
+    }
+
+    public String toString() {
+        ToStringBuilder builder = new ToStringBuilder(this);
+        builder.append("alias", alias);
+        builder.append("property", property);
+        builder.append("sortOrder", sortOrder);
+        return builder.toString();
+    }
+}

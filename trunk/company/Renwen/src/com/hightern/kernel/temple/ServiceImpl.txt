@@ -1,0 +1,31 @@
+/**
+ * Copyright (c) 2009. All rights reserved.
+ * 所属公司：Hightern 宁波海腾计算机有限公司
+ */
+package com.hightern.#{packageName}.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.hightern.kernel.service.impl.BaseServiceImpl;
+import com.hightern.#{packageName}.dao.#{upperName}Dao;
+import com.hightern.#{packageName}.model.#{upperName};
+import com.hightern.#{packageName}.service.#{upperName}Service;
+
+@Service("#{lowerName}Service")
+@Transactional
+public class #{upperName}ServiceImpl extends BaseServiceImpl<#{upperName}, Long>
+        implements #{upperName}Service {
+
+    @SuppressWarnings("unused")
+    private final #{upperName}Dao #{lowerName}Dao;
+
+    @Autowired(required = false)
+    public #{upperName}ServiceImpl(@Qualifier("#{lowerName}Dao") #{upperName}Dao #{lowerName}Dao) {
+        super(#{lowerName}Dao);
+        this.#{lowerName}Dao = #{lowerName}Dao;
+    }
+    
+}

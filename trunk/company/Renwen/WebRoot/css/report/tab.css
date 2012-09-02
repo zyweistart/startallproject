@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+a.v1:link {
+    font-size: 12px;
+    text-decoration: none;
+    color: #000000;
+}
+
+a.v1:visited {
+    font-size: 12px;
+    text-decoration: none;
+    color: #000000;
+}
+
+a.v1:hover {
+    font-size: 12px;
+    text-decoration: underline;
+    color: #FF0000;
+}
+
+/*表格第一行样式*/
+.first_line {
+    background-color: #eeeeee;
+}
+
+/*表格第二行样式*/
+.second_line_1 {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #eeeeee;
+}
+
+/*表格第三行样式*/
+.third_line1 {
+    background-color: #eeeeee;
+}
