@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import com.discover.app.R;
 import com.discover.core.BaseActivity;
-
 /**
  * 设置界面
  * @author Start

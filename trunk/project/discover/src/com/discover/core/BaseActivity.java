@@ -1,5 +1,7 @@
 package com.discover.core;
 
+import com.discover.utils.SharedPreferencesUtils;
+
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
@@ -7,34 +9,43 @@ import android.widget.Toast;
 
 public abstract class BaseActivity extends Activity {
 
-	protected void makeTextLong(String message){
+	private SharedPreferencesUtils preferences;
+	
+	public SharedPreferencesUtils getSharedPreferencesUtils(){
+		if(preferences==null){
+			preferences=new SharedPreferencesUtils(this,Constant.PreferencesName);
+		}
+		return preferences;
+	}
+	
+	public void makeTextLong(String message){
 		if(message!=null){
 			sendMessage(Toast.LENGTH_LONG,message);
 		}
 	}
 	
-	protected void makeTextShort(String message){
+	public void makeTextShort(String message){
 		if(message!=null){
 			sendMessage(Toast.LENGTH_SHORT,message);
 		}
 	}
 	
-	protected void sendEmptyMessage(int what){
+	public void sendEmptyMessage(int what){
 		sendMessage(what);
 	}
 	
-	protected void sendMessage(int what){
+	public void sendMessage(int what){
 		sendMessage(what,null);
 	}
 	
-	protected void sendMessage(int what,Object obj){
+	public void sendMessage(int what,Object obj){
 		Message message=new Message();
 		message.what=what;
 		message.obj=obj;
 		handler.sendMessage(message);
 	}
 	
-	protected Handler handler=new Handler(){
+	public Handler handler=new Handler(){
 
 		@Override
 		public void handleMessage(Message message) {
@@ -53,8 +64,7 @@ public abstract class BaseActivity extends Activity {
 		
 	};
 	
-	protected void processMessage(Message message){
-		
+	public void processMessage(Message message){
 	}
 	
 }
