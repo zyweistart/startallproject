@@ -1,4 +1,4 @@
-package com.discover.app.activity.personal;
+package com.discover.app;
 
 import android.os.Bundle;
 
