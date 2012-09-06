@@ -1,19 +1,19 @@
-package com.discover.app.activity;
+package com.discover.app;
 
 import android.os.Bundle;
 
 import com.discover.app.R;
 import com.discover.core.BaseActivity;
+
 /**
- * 忘记密码
+ * 关于我们
  * @author Start
  */
-public class ForgetPasswordActivity extends BaseActivity {
+public class AboutActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
 }

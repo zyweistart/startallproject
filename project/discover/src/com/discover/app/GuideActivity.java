@@ -1,15 +1,14 @@
-package com.discover.app.activity;
+package com.discover.app;
 
 import android.os.Bundle;
-import android.view.Menu;
 
 import com.discover.app.R;
 import com.discover.core.BaseActivity;
 /**
- * 主界面
+ * 引导
  * @author Start
  */
-public class MainActivity extends BaseActivity {
+public class GuideActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -17,10 +16,4 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }
-    
 }

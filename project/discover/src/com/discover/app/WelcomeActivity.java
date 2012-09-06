@@ -1,14 +1,14 @@
-package com.discover.app.activity;
+package com.discover.app;
 
 import android.os.Bundle;
 
 import com.discover.app.R;
 import com.discover.core.BaseActivity;
 /**
- * 引导
+ * 欢迎页
  * @author Start
  */
-public class GuideActivity extends BaseActivity {
+public class WelcomeActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

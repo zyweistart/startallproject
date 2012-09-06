@@ -1,14 +1,14 @@
-package com.discover.app.activity;
+package com.discover.app;
 
 import android.os.Bundle;
 
 import com.discover.app.R;
 import com.discover.core.BaseActivity;
 /**
- * 欢迎页
+ * 登陆
  * @author Start
  */
-public class WelcomeActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
