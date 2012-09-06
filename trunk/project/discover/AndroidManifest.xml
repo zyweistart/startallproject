@@ -4,7 +4,9 @@
     android:versionName="1.0" >
 
     <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="15" />
-
+    <!-- 允许应用程序获取设备的精确位置(如通过GPS) -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    
     <application 
         android:name=".GlobalApplication" 
         android:icon="@drawable/ic_launcher" 
@@ -12,8 +14,9 @@
         android:theme="@style/AppTheme" >
         
         <activity
-            android:name=".activity.MainActivity"
-            android:label="@string/title_activity_main" >
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" 
+            android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

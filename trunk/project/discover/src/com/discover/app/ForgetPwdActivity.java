@@ -8,7 +8,7 @@ import com.discover.core.BaseActivity;
  * 忘记密码
  * @author Start
  */
-public class ForgetPasswordActivity extends BaseActivity {
+public class ForgetPwdActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
