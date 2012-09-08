@@ -365,7 +365,7 @@ public final class OracleDataContext extends EntityManager {
 					executeBatchs.addAll(alterTableSqls);
 					executeBatchs.addAll(comments);
 					for(String sql:executeBatchs){
-						session.executeUpdate(sql, false);
+						session.executeUpdate(sql);
 					}
 					System.out.println(Message.getMessage(Message.PM_5007,
 							(System.currentTimeMillis()-start)));

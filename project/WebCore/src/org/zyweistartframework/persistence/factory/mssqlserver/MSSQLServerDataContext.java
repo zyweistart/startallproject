@@ -206,7 +206,7 @@ public final class MSSQLServerDataContext extends EntityManager {
 					//对表的修改
 					executeBatchs.addAll(alterTableSqls);
 					for(String sql:executeBatchs){
-						session.executeUpdate(sql, false);
+						session.executeUpdate(sql);
 					}
 					System.out.println(Message.getMessage(Message.PM_5007,
 							(System.currentTimeMillis()-start)));
