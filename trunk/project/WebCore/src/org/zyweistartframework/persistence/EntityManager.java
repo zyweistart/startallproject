@@ -198,13 +198,13 @@ public abstract class EntityManager {
 		                 //如果主键类型为自动生成则把主键设为刚刚生成的主键值
 		                 if (id.value()== GeneratedValue.IDENTITY){
 		                	 //主键为自动增长时则获取主键的值
-		                	 primaryKeyValue =getSession().executeUpdate(nSql, true, parameters.toArray());
+		                	 primaryKeyValue =getSession().executeUpdate1(nSql, true, parameters.toArray());
 		                     //为对象设置自动生成的主键值
 		                	 EntityFactory.getInstance().injectParameter(entity,entityMember.getPKPropertyMember().getSMethod(), 
 		                    		 entityMember.getPKPropertyMember().getReturnTypeSimpleName(),primaryKeyValue);
 		                 }else{
 		                 	//返回的是响应的行数
-		                	 getSession().executeUpdate(nSql,false, parameters.toArray());
+		                	 getSession().executeUpdate(nSql, parameters.toArray());
 		                 }
 		             }
 		             //一对一
@@ -251,7 +251,7 @@ public abstract class EntityManager {
 	        	             		enPrimaryKeyValue=tarMember.getPKPropertyMember().getGMethod().invoke(en);
 	        	             	}
 	         					if(enPrimaryKeyValue!=null){
-	         						getSession().executeUpdate(executeSQL,false,primaryKeyValue,enPrimaryKeyValue);
+	         						getSession().executeUpdate(executeSQL,primaryKeyValue,enPrimaryKeyValue);
 	         					}
 	         				}
 	         			}
@@ -299,8 +299,7 @@ public abstract class EntityManager {
 							Collection<?> entitys=(Collection<?>)propertyMember.getGMethod().invoke(entity);
 	            			if(entitys!=null){
 	            				//由于多对多特殊原因顾先将对应的关系全部删除，只有当对象为NULL的时候才不做任何操作
-	            				getSession().executeUpdate(CacheSQL.getPMManyToManyDeleteCacheSQL(entityMember,propertyMember),
-	            						false,primaryKeyValue);
+	            				getSession().executeUpdate(CacheSQL.getPMManyToManyDeleteCacheSQL(entityMember,propertyMember),primaryKeyValue);
 								if(EntityFactory.getInstance().isCascade(((ManyToMany)propertyMember.getCurrentFieldAnnotation()).cascade(), CascadeType.MERGE)){
 									String executeSQL=CacheSQL.getPMManyToManyInsertCacheSQL(entityMember,propertyMember);
 									for(Object en:entitys){
@@ -310,7 +309,7 @@ public abstract class EntityManager {
 										}
 										Object enPrimaryKeyValue=tarMember.getPKPropertyMember().getGMethod().invoke(en);
 										if(enPrimaryKeyValue!=null){
-											getSession().executeUpdate(executeSQL,false,primaryKeyValue,enPrimaryKeyValue);
+											getSession().executeUpdate(executeSQL,primaryKeyValue,enPrimaryKeyValue);
 										}
 	                				}
 								}
@@ -430,7 +429,7 @@ public abstract class EntityManager {
 							wSql.append(Constants.KEY);
 	                        parameters.add(primaryKeyValue);
 	                        getSession().executeUpdate(uSql.toString() + values.toString().substring(0, values.length() - 1) + 
-	                        		wSql.toString(),false,parameters.toArray());
+	                        		wSql.toString(),parameters.toArray());
 						}
 						getTransaction().commitTrans();
 					} catch (SQLException e) {
@@ -473,8 +472,7 @@ public abstract class EntityManager {
 						//多对多
 						for(PropertyMember propertyMember:entityMember.getManyToManyPropertyMembers()){
 							//首先删除所有与该对象对应的关系
-							getSession().executeUpdate(CacheSQL.getPMManyToManyDeleteCacheSQL(entityMember, propertyMember),
-									false,primaryKeyValue);
+							getSession().executeUpdate(CacheSQL.getPMManyToManyDeleteCacheSQL(entityMember, propertyMember),primaryKeyValue);
 							if(EntityFactory.getInstance().isCascade(((ManyToMany)propertyMember.getCurrentFieldAnnotation()).cascade(), CascadeType.REMOVE)){
 								//如果可以级联删除则再删除对象
 								Collection<?> entitys=(Collection<?>)propertyMember.getGMethod().invoke(entity);
@@ -547,7 +545,7 @@ public abstract class EntityManager {
 								}
 							}
 						}
-						getSession().executeUpdate(CacheSQL.getDeleteCacheSQL(entityMember),false,primaryKeyValue);
+						getSession().executeUpdate(CacheSQL.getDeleteCacheSQL(entityMember),primaryKeyValue);
 						//多对一
 						for(PropertyMember propertyMember:entityMember.getManyToOnePropertyMembers()){
 							//只有在不为必须的时候才能删除对方的数据

@@ -214,7 +214,7 @@ public final class MySQLDataContext extends EntityManager {
 									alterTableSql.append(" ADD ");
 									alterTableSql.append(field.replaceAll(" NOT NULL", ""));
 									alterTableSql.deleteCharAt(alterTableSql.length()-1);
-									alterTableSql.append(";");
+//									alterTableSql.append(";");
 									alterTableSqls.add(alterTableSql.toString());
 								}
 							}else{
@@ -293,9 +293,9 @@ public final class MySQLDataContext extends EntityManager {
 										atSql.append(PersistenceConfig.LEFTSEPARATED);
 										atSql.append(entityMember.getPKPropertyMember().getFieldName());
 										atSql.append(PersistenceConfig.RIGHTSEPARATED);
-										atSql.append(");");
+										atSql.append(")");
 										alterTableSqls.add(atSql.toString());
-										atSql.delete(0, atSql.length()-1);
+										atSql.delete(0, atSql.length());
 										
 										atSql.append("ALTER TABLE ");
 										atSql.append(PersistenceConfig.LEFTSEPARATED);
@@ -318,7 +318,7 @@ public final class MySQLDataContext extends EntityManager {
 										atSql.append(PersistenceConfig.LEFTSEPARATED);
 										atSql.append(tarMember.getPKPropertyMember().getFieldName());
 										atSql.append(PersistenceConfig.RIGHTSEPARATED);
-										atSql.append(");");
+										atSql.append(")");
 										alterTableSqls.add(atSql.toString());
 									}else{
 										String commentFore=contextAnnotation.comment(propertyMember.getJoinTableName(),
@@ -334,7 +334,7 @@ public final class MySQLDataContext extends EntityManager {
 					executeBatchs.addAll(alterTableSqls);
 //					executeBatchs.addAll(comments);
 					for(String sql:executeBatchs){
-						session.executeUpdate(sql, false);
+						session.executeUpdate(sql);
 					}
 					System.out.println(Message.getMessage(Message.PM_5007,
 							(System.currentTimeMillis()-start)));

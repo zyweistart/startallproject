@@ -83,7 +83,7 @@
 		<!--自动生成数据库表-->
 		<Param name="GENERATETABLE">true</Param>
 		<!--数据库方向 -->
-		<Param name="DIALECT">OracleDialect</Param>
+		<Param name="DIALECT">MySQLDialect</Param>
 		<!--Oracle数据库-->
 		<Connection name="OracleDialect">
 			<propertie name="driverClassName">oracle.jdbc.driver.OracleDriver</propertie>
@@ -103,7 +103,7 @@
 			<propertie name="driverClassName">com.mysql.jdbc.Driver</propertie>
 			<propertie name="url">jdbc:mysql://localhost:3306/jstartdb?useUnicode=true&amp;characterEncoding=utf-8</propertie>
 			<propertie name="username">root</propertie>
-			<propertie name="password">start</propertie>
+			<propertie name="password">hightern</propertie>
 			<propertie name="maxActive">30</propertie>
 			<propertie name="maxIdle">10</propertie>
 			<propertie name="maxWait">1000</propertie>
