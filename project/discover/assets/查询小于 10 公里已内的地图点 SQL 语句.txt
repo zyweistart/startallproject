@@ -1,9 +1,0 @@
-查询小于 10 公里已内的地图点 SQL 语句 
-
-$result = mysql_query ( "SELECT name,longitude,latitude,des FROM location 
-where type=".$type." and (((longitude - ".$lng.") * (longitude - ".$lng.") + (latitude 
-- ".$lat.") * (latitude - ".$lat."))  <= (10 / 110) * (10 / 110))"); 
-
-其中核心部分是  (((longitude - ".$lng.") * (longitude - ".$lng.") + (latitude  -
-".$lat.") * (latitude - ".$lat."))  <= (10 / 110) * (10 / 110))，$lng和$lat 分别代码
-从Android 客户端提交过来的经度和纬度。
