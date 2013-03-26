@@ -1,80 +1,52 @@
 package com.zyweistart.app;
 
-import java.util.List;
-
 import android.app.Activity;
-import android.app.ActivityManager;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.hardware.Sensor;
-import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public final class SecurityActivity extends Activity {
+public final class SecurityActivity extends Activity implements OnClickListener {
 
-	private final static String TAG = "SecurityActivity";
 	private final static String SecuritySensorServiceName="com.zyweistart.app.SecuritySensorService";
 
-//	private NotificationManager mNotificationManager;
+	private Intent mServiceIntent;
+
 	private Button btnStartService;
 	private Button btnStopService;
 	private Button btnExit;
-	private BtnClickListener btnClickListener;
-	private Intent serviceIntent;
-
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		 super.onCreate(savedInstanceState);
 		 setContentView(R.layout.main);
-//		 //创建一个NotificationManager的引用
-//		 mNotificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-//		 //定义Notification的各种属性
-//		 CharSequence tickerText = "手机监控程序"; //状态栏显示的通知文本提示
-//		 long when = System.currentTimeMillis(); //通知产生的时间，会在通知信息里显示
-//		 //用上面的属性初始化Nofification
-//		 Notification notification = new
-//		 Notification(R.drawable.ic_notification,tickerText,when);
-//		 //设置通知的事件消息
-//		 Context context = getApplicationContext(); //上下文
-//		 CharSequence contentTitle = "手机防盗安全警报系统"; //通知栏标题
-//		 CharSequence contentText = "安全监控程序已经启动!"; //通知栏内容
-//		 Intent notificationIntent = new Intent(this,SecurityActivity.class);
-//		 //点击该通知后要跳转的Activity
-//		 PendingIntent contentIntent =
-//		 PendingIntent.getActivity(this,0,notificationIntent,0);
-//		 notification.setLatestEventInfo(context, contentTitle, contentText,
-//		 contentIntent);
-//		 //把Notification传递给NotificationManager
-//		 mNotificationManager.notify(0,notification);
 		
-		 serviceIntent = new Intent(this, SecuritySensorService.class);
+		 mServiceIntent = new Intent(this, SecuritySensorService.class);
 		 
-		 btnClickListener=new BtnClickListener();
 		 //开启服务
 		 btnStartService=(Button)findViewById(R.id.btnStartService);
-		 btnStartService.setOnClickListener(btnClickListener);
+		 btnStartService.setOnClickListener(this);
 		 //停止服务
 		 btnStopService=(Button)findViewById(R.id.btnStopService);
-		 btnStopService.setOnClickListener(btnClickListener);
+		 btnStopService.setOnClickListener(this);
 		 //退出程序
 		 btnExit=(Button)findViewById(R.id.btnExit);
-		 btnExit.setOnClickListener(btnClickListener);
+		 btnExit.setOnClickListener(this);
 		 
 		 TextView tv=(TextView)findViewById(R.id.txtInfo);
-		 SensorManager mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
-		 String mAcceleRometerSensor =mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)==null?"不支持":"支持";
-		 String mProximitySensor =mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)==null?"不支持":"支持";
+		 String mAcceleRometerSensor =getAppContext().getSensorManager().getDefaultSensor(Sensor.TYPE_ACCELEROMETER)==null?"不支持":"支持";
+		 String mProximitySensor =getAppContext().getSensorManager().getDefaultSensor(Sensor.TYPE_PROXIMITY)==null?"不支持":"支持";
 		 tv.setText("重力传感器："+mAcceleRometerSensor+"\n距离传感器："+mProximitySensor);
-		Log.i(TAG, "应用程序创建了！");
 	}
 
 	@Override
 	protected void onResume() {
-		if(isServiceStart(SecuritySensorServiceName)){
+		if(getAppContext().isServiceStart(SecuritySensorServiceName)){
 			btnStartService.setEnabled(false);
 			btnStopService.setEnabled(true);
 		}else{
@@ -84,40 +56,49 @@ public final class SecurityActivity extends Activity {
 		super.onResume();
 	}
 
-	/**
-	 * 判断某个服务是否已经开启
-	 */
-	private boolean isServiceStart(String className) {
-		ActivityManager mActivityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-		List<ActivityManager.RunningServiceInfo> mServiceList = mActivityManager.getRunningServices(30);
-		for (int i = 0; i < mServiceList.size(); i++) {
-			if (className.equals(mServiceList.get(i).service.getClassName())) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private final class BtnClickListener implements OnClickListener {
-		@Override
-		public void onClick(View v) {
-			switch (v.getId()) {
-			case R.id.btnStartService:
-				startService(serviceIntent);
-				btnStartService.setEnabled(false);
-				btnStopService.setEnabled(true);
-				break;
-			case R.id.btnStopService:
-				stopService(serviceIntent);
-				btnStartService.setEnabled(true);
-				btnStopService.setEnabled(false);
-				break;
-			case R.id.btnExit:
-				stopService(serviceIntent);
-				android.os.Process.killProcess(android.os.Process.myPid());
-				break;
-			}
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.btnStartService:
+			startService(mServiceIntent);
+			btnStartService.setEnabled(false);
+			btnStopService.setEnabled(true);
+			break;
+		case R.id.btnStopService:
+			stopService(mServiceIntent);
+			btnStartService.setEnabled(true);
+			btnStopService.setEnabled(false);
+			break;
+		case R.id.btnExit:
+			finish();
+			break;
 		}
 	}
 
+	public AppContext getAppContext(){
+		return (AppContext)getApplication();
+	}
+	
+	@Override
+	protected void onStop() {
+		super.onStop();
+		finish();
+	}
+
+	@Override
+	protected void onDestroy() {
+		if(getAppContext().isServiceStart(SecuritySensorServiceName)){
+			CharSequence tickerText = "手机防盗系统";
+		    Notification notification = new Notification(R.drawable.ic_launcher, tickerText, System.currentTimeMillis());
+		    notification.flags = Notification.FLAG_AUTO_CANCEL;
+		    //定义下拉通知栏时要展现的内容信息
+		    Intent nIntent = new Intent(this, SecurityActivity.class);
+		    PendingIntent contentIntent = PendingIntent.getActivity(this, 0,nIntent, 0);
+		    notification.setLatestEventInfo(getApplicationContext(), tickerText, "服务已开启...",contentIntent); 
+		    //用mNotificationManager的notify方法通知用户生成标题栏消息通知
+		    getAppContext().getNotificationManager().notify(1, notification);
+		}
+		super.onDestroy();
+	}
+	
 }
