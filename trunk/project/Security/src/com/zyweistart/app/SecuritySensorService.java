@@ -3,9 +3,7 @@ package com.zyweistart.app;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android.app.KeyguardManager;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -17,7 +15,6 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.os.Vibrator;
 import android.util.Log;
 
 /**
@@ -28,24 +25,12 @@ public final class SecuritySensorService extends Service {
 
 	private final static String TAG = "SecuritySensorService";
 
-	private KeyguardManager mKeyguardManager;
-	private SensorManager mSensorManager;
-	private AudioManager mAudioManager;
 	private SensorServiceEventListener mSensorEventListener;
 	private ScreenLockUnlockMonitor mScreenLockUnlockMonitor;
-	private SecurityMonitoring mSecurityMonitoring;
 	/**
 	 * 定时器
 	 */
 	private Timer timer;
-	/**
-	 * 手机震动
-	 */
-	private Vibrator mVibrator;
-	/**
-	 * 重力传感器
-	 */
-	private Sensor mAccelerometerSensor=null;
 	/**
 	 * 距离传感器
 	 */
@@ -62,22 +47,17 @@ public final class SecuritySensorService extends Service {
 	 * 是否处于安全监控中
 	 */
 	private boolean isMonitoring=false;
-	/**
-	 * 该值越小表示敏感越大
-	 */
-	private final static int SHAKE_THRESHOLD=2500;
-	private long mLastTimeMillis;
 	private int mStreamMaxVolume=0;
-	private float x,y,z,lastX,lastY,lastZ;
+	private float x;
+	
+	private Boolean firstFlag=false;
+	
+	public AppContext getAppContext(){
+		return (AppContext)getApplication();
+	}
 	
 	@Override
 	public void onCreate() {
-		// 获取键盘管理器
-		mKeyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
-		// 获取感应器管理器
-		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-		mAudioManager= (AudioManager)getSystemService(Context.AUDIO_SERVICE );
-		mVibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
 		super.onCreate();
 	}
 
@@ -97,18 +77,40 @@ public final class SecuritySensorService extends Service {
 									if(isMonitoring){
 										Log.i(TAG,"已解除安全警报");
 										if(mAlarmMP!=null){
-											if(mAlarmMP.isPlaying()){
-												mAlarmMP.stop();
+											try{
+												if(mAlarmMP.isPlaying()){
+													mAlarmMP.stop();
+												}
+											}finally{
+												mAlarmMP.release();
+												mAlarmMP=null;
 											}
-											mAlarmMP.release();
-											mAlarmMP=null;
 										}else{
 											//提示一下表示已解锁
-											mVibrator.vibrate(pattern, -1);
+											getAppContext().getVibrator().vibrate(pattern, -1);
 										}
 										isMonitoring=false;
 									}
 									unLock();
+								}else if(Intent.ACTION_SCREEN_OFF.equals(action)){
+									Log.i(TAG,"设备监控已开启，提示用户在10秒之内迅速把手机放入口袋或包中 ！");
+									//TODO:设备监控已开启，提示用户在10秒之内迅速把手机放入口袋或包中 
+									getAppContext().getVibrator().vibrate(pattern, -1);
+									//数秒后传感器变更
+									timer.schedule(new TimerTask() {
+										@Override
+										public void run() {
+											if(mProximitySensor==null){
+												//注册距离传感器
+												mProximitySensor = getAppContext().getSensorManager().getDefaultSensor(Sensor.TYPE_PROXIMITY);
+												getAppContext().getSensorManager().registerListener(mSensorEventListener, mProximitySensor,SensorManager.SENSOR_DELAY_FASTEST);
+											}
+											firstFlag=false;
+											Log.i(TAG,"表示已经进入监控状态，提示用户如果为自己从口袋中拿出手机要记得立即解锁防止报警!");
+											//TODO:表示已经进入监控状态，提示用户如果为自己从口袋中拿出手机要记得立即解锁防止报警
+											getAppContext().getVibrator().vibrate(pattern, -1);
+										}
+									}, 10000);
 								}
 								break;
 							}
@@ -118,7 +120,7 @@ public final class SecuritySensorService extends Service {
 		timer=new Timer(true);
 		mScreenLockUnlockMonitor.openMonitor();
 		mSensorEventListener = new SensorServiceEventListener();
-		mStreamMaxVolume=mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+		mStreamMaxVolume=getAppContext().getAudioManager().getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 		unLock();
 		super.onStart(intent, startId);
 	}
@@ -126,7 +128,7 @@ public final class SecuritySensorService extends Service {
 	@Override
 	public void onDestroy() {
 		mScreenLockUnlockMonitor.closeMonitor();
-		mSensorManager.unregisterListener(mSensorEventListener);
+		getAppContext().getSensorManager().unregisterListener(mSensorEventListener);
 		super.onDestroy();
 	}
 	
@@ -141,59 +143,52 @@ public final class SecuritySensorService extends Service {
 		@Override
 		public void onSensorChanged(SensorEvent event) {
 			switch(event.sensor.getType()){
-			//重力传感器晃动手机让其进入监控状态
-			case Sensor.TYPE_ACCELEROMETER:
-				//键盘必须为锁定状态
-				if (mKeyguardManager.inKeyguardRestrictedInputMode()) {
-					long currentTimeMillis=System.currentTimeMillis();
-					//每100毫秒检测一次
-					x = event.values[SensorManager.DATA_X];
-					y = event.values[SensorManager.DATA_Y];
-					z = event.values[SensorManager.DATA_Z];
-					if((currentTimeMillis-mLastTimeMillis)>100){
-						x = event.values[SensorManager.DATA_X];
-						y = event.values[SensorManager.DATA_Y];
-						z = event.values[SensorManager.DATA_Z];
-						long intervalTime=currentTimeMillis-mLastTimeMillis;
-						float speed=Math.abs(x+y+z-lastX-lastY-lastZ)/intervalTime*10000;
-						//重力传感器已满足条件
-						if(speed>SHAKE_THRESHOLD){
-							Log.i(TAG,"监控设备启动完毕！");
-							if(mProximitySensor==null){
-								//注册距离传感器
-								mProximitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-								mSensorManager.registerListener(mSensorEventListener, mProximitySensor,SensorManager.SENSOR_DELAY_FASTEST);
-							}
-							//解除重力传感器
-							if(mAccelerometerSensor!=null){
-								mSensorManager.unregisterListener(mSensorEventListener,mAccelerometerSensor);
-								mAccelerometerSensor=null;
-							}
-							//震动提示一下表示进入监控状态
-						    mVibrator.vibrate(pattern, -1);
-						}
-						lastX=x;
-						lastY=y;
-						lastZ=z;
-						mLastTimeMillis=currentTimeMillis;
-					}
-				}
-				break;
 			//距离传感器
 			case Sensor.TYPE_PROXIMITY:
-				if (mKeyguardManager.inKeyguardRestrictedInputMode()) {
+				if (getAppContext().getKeyguardManager().inKeyguardRestrictedInputMode()) {
 					//防止重复监控
 					if(!isMonitoring){
 						x = event.values[SensorManager.DATA_X];
-						//大于零则表示手机肯定不是在口袋里
-						if (x > 0) {
-							//如果距离传感器注册监听10秒后值发生变化则启动安全监控线程
-							if((System.currentTimeMillis()-mLastTimeMillis)>10000){
-								Log.w(TAG, "安全警报系统已启动，将在5秒后报警,请注意!");
+//						Log.v(TAG,"距离："+x);
+						if(x<=1){
+							//小于等于1表示手机是先在口袋中的
+							firstFlag=true;
+						}
+						if(firstFlag){
+							//如果距离突然增大则表示手机肯定从口袋或包中拿出
+							if (x > 1) {
+								Log.w(TAG, "安全警报系统已启动，如果为用户自己拿出手机则需要在5秒内迅速解锁，否则将报警！");
+								//TODO:安全警报系统已启动，如果为用户自己拿出手机则需要在5秒内迅速解锁，否则将报警
 								isMonitoring=true;
-								// 新建一个任务
-								mSecurityMonitoring=new SecurityMonitoring();
-								timer.schedule(mSecurityMonitoring, 5000);
+								timer.schedule(new TimerTask() {
+									@Override
+									public void run() {
+										try {
+											//如果运行到该处还没有解锁，那么你的爱机可能已经被盗，注意小偷!!!
+											if (getAppContext().getKeyguardManager().inKeyguardRestrictedInputMode()) {
+												Log.e(TAG, "报警,抓小偷...");
+												//TODO:提示报警音等动作
+												mAlarmMP=MediaPlayer.create(SecuritySensorService.this, R.raw.alarm);
+												mAlarmMP.setVolume(mStreamMaxVolume, mStreamMaxVolume);
+												mAlarmMP.setLooping(true);
+												if (mAlarmMP != null) { 
+													mAlarmMP.stop();
+											    }
+												mAlarmMP.prepare();
+												mAlarmMP.start();
+												mAlarmMP.setOnCompletionListener(new OnCompletionListener() {
+													@Override
+													public void onCompletion(MediaPlayer mp) {
+														mAlarmMP.release();
+														mAlarmMP=null;
+													}
+												});
+											}
+										} catch (Exception e) {
+											e.printStackTrace();
+										}
+									}
+								}, 5000);
 							}
 						}
 					}
@@ -215,55 +210,8 @@ public final class SecuritySensorService extends Service {
 	private void unLock(){
 		// 解除距离传感器
 		if(mProximitySensor!=null){
-			mSensorManager.unregisterListener(mSensorEventListener,mProximitySensor);
+			getAppContext().getSensorManager().unregisterListener(mSensorEventListener,mProximitySensor);
 			mProximitySensor=null;
-		}
-		// 注册重力传感器
-		if(mAccelerometerSensor==null){
-			mAccelerometerSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-			mSensorManager.registerListener(mSensorEventListener, mAccelerometerSensor,SensorManager.SENSOR_DELAY_FASTEST);
-		}
-		mLastTimeMillis=0l;
-	}
-	
-	/**
-	 * 安全监控线程
-	 */
-	private final class SecurityMonitoring extends TimerTask {
-		@Override
-		public void run() {
-			try {
-				//如果运行到该处还没有解锁，那么你的爱机可能已经被盗，注意!!!
-				if (mKeyguardManager.inKeyguardRestrictedInputMode()) {
-					Log.e(TAG, "抓小偷，手机被盗了！");
-					//提示报警音等动作
-					mAlarmMP=MediaPlayer.create(SecuritySensorService.this, R.raw.alarm);
-					mAlarmMP.setVolume(mStreamMaxVolume, mStreamMaxVolume);
-					mAlarmMP.setLooping(true);
-					if (mAlarmMP != null) { 
-						mAlarmMP.stop();
-				    }
-					//播放警报声音
-					mAlarmMP.prepare();
-					mAlarmMP.start();
-					mAlarmMP.setOnCompletionListener(new OnCompletionListener() {
-						//由于设置为了循环播放则永远不可能触发该结束播放的事件
-						@Override
-						public void onCompletion(MediaPlayer mp) {
-							mAlarmMP.release();
-							mAlarmMP=null;
-						}
-					});
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}finally{
-				if(mSecurityMonitoring!=null){
-					//将原任务从队列中移除
-					mSecurityMonitoring.cancel();
-					mSecurityMonitoring=null;
-				}
-			}
 		}
 	}
 	
