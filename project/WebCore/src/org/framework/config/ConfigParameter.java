@@ -113,19 +113,19 @@ public interface ConfigParameter {
 	/**
 	 * 文件上传大小
 	 */
-	public static final Integer MAX_FILE_UPLOADSIZE = ConfigConstant.MAXUPLOADSIZE;
+	public static final Long MAX_FILE_UPLOADSIZE = ConfigConstant.MAXUPLOADSIZE;
 	/**
 	 * 附属文件上传大小
 	 */
-	public static final Integer MAX_SUBFILE_UPLOADSIZE = ConfigConstant.MAXUPLOADSIZE;
+	public static final Long MAX_SUBFILE_UPLOADSIZE = ConfigConstant.MAXUPLOADSIZE;
 	/**
 	 * 上传申请大小
 	 */
-	public static final Integer MAX_APPLY_FILEUPLOADSIZE = ConfigConstant.MAXUPLOADSIZE;
+	public static final Long MAX_APPLY_FILEUPLOADSIZE = ConfigConstant.MAXUPLOADSIZE;
 	/**
 	 * 文本数据上传大小
 	 */
-	public static final Integer MAX_TEXT_UPLOADSIZE =Variable.Byte_Hex*Variable.Byte_Hex*8;
+	public static final Long MAX_TEXT_UPLOADSIZE =(long) (Variable.Byte_Hex*Variable.Byte_Hex*8);
 	/**
 	 * 请求参数的长度
 	 */
@@ -133,6 +133,6 @@ public interface ConfigParameter {
 	/**
 	 * 请求主体内容大小
 	 */
-	public static final Integer MAX_REQUEST_BODY_CONTENT_LENGTH =Variable.Byte_Hex*Variable.Byte_Hex*4;
+	public static final Long MAX_REQUEST_BODY_CONTENT_LENGTH =(long) (Variable.Byte_Hex*Variable.Byte_Hex*4);
 	
 }

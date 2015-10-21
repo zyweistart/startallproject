@@ -59,7 +59,7 @@ public final class ConfigConstant {
 	/**
 	 * 文件上传大小限制BYTE为单位
 	 */
-	public final static Integer MAXUPLOADSIZE=Integer.parseInt(GlobalConfig.Constants.get("MAXUPLOADSIZE"));
+	public final static Long MAXUPLOADSIZE=Long.parseLong(GlobalConfig.Constants.get("MAXUPLOADSIZE"));
 	/**
 	 * 允许上传的文件类型"*"代表允许所有
 	 * <pre>
