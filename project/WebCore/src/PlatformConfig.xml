@@ -101,9 +101,9 @@
 		<!--MySQL数据库-->
 		<Connection name="MySQLDialect">
 			<propertie name="driverClassName">com.mysql.jdbc.Driver</propertie>
-			<propertie name="url">jdbc:mysql://localhost:3306/jstartdb?useUnicode=true&amp;characterEncoding=utf-8</propertie>
+			<propertie name="url">jdbc:mysql://localhost:3307/test?useUnicode=true&amp;characterEncoding=utf-8</propertie>
 			<propertie name="username">root</propertie>
-			<propertie name="password">hightern</propertie>
+			<propertie name="password">root</propertie>
 			<propertie name="maxActive">30</propertie>
 			<propertie name="maxIdle">10</propertie>
 			<propertie name="maxWait">1000</propertie>

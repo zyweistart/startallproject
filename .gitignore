@@ -1,2 +1,4 @@
 
 *.class
+
+project/WebCore/WebRoot/WEB-INF/classes/PlatformConfig.xml
