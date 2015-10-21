@@ -1,0 +1,15 @@
+package @{COMPANYNAME}.@{PACKAGENAME}.dao.impl;
+
+import org.zyweistartframework.context.annotation.Repository;
+import org.framework.dao.impl.RootDaoImpl;
+import @{COMPANYNAME}.@{PACKAGENAME}.dao.@{ENTITYNAME}Dao;
+import @{COMPANYNAME}.@{PACKAGENAME}.entity.@{ENTITYNAME};
+
+@Repository("@{SIMPLEENTITYNAME}Dao")
+public final class @{ENTITYNAME}DaoImpl extends RootDaoImpl<@{ENTITYNAME},String>implements @{ENTITYNAME}Dao {
+
+	public @{ENTITYNAME}DaoImpl() {
+		super(@{ENTITYNAME}.class);
+	}
+
+}
